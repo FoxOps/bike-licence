@@ -2,8 +2,8 @@ from flask import request
 import bl_functions
 
 
-def bike_licence_info():
-    data: dict = request.json()
+def bike_licence_info(reponse_formulaire):
+    data: dict = reponse_formulaire
     age: int = bl_functions.time_passed(data['date_of_birth'])
     error_dict: dict = {}
     permis_list: list = []

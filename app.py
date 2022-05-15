@@ -1,7 +1,7 @@
 ## Partie Web ##
 
 from flask import Flask, request, make_response, render_template
-from main import interactWith
+from main import bike_licence_info
 import jinja2
 
 
@@ -10,30 +10,21 @@ loader=jinja2.FileSystemLoader('templates')
 app = Flask(__name__)
 
 
-@app.route("/play", methods=["GET","POST"])
-def play():
-    user = request.args.get('user')
-    reponse_utilisateur = request.args.get('reponse')
-    username = user.get("name") if isinstance(user, dict) else ""
-
-    dict_reponse, joueur_debug = interactWith(f'"cookie": {username}, "input_reponse": {reponse_utilisateur}')
-    resp = make_response(render_template("answer_question.html", dict_reponse=dict_reponse, joueur_debug=joueur_debug))
-
+@app.route("/", methods=["GET","POST"])
+def initialize():
+    resp = make_response(render_template("answer_question.html"))
     return resp
 
 
-@app.route("/start", methods=["GET", "POST"])
-def start_play():
-    reponse_utilisateur = {}
-    username = request.form.get("userName")
+@app.route("/start", methods=["GET","POST"])
+def start():
+    reponse_formulaire = request.form.to_dict(flat=False)
 
-    dict_reponse, joueur_debug = interactWith(f'"cookie": {username}, "input_reponse": {reponse_utilisateur}')
-    resp = make_response(render_template("answer_question.html", dict_reponse=dict_reponse, joueur_debug=joueur_debug))
+    for key, val in reponse_formulaire.items():
+        reponse_formulaire[key] = val[0]
 
-    return resp
+    reponses_pour_utilisateur = bike_licence_info(reponse_formulaire)
 
+    resp = make_response(render_template("possibilite_permis.html", reponses_pour_utilisateur=reponses_pour_utilisateur))
 
-@app.route("/", methods=["GET", "POST"])
-def start_add_user():
-    resp = make_response(render_template("add_user.html"))
     return resp
