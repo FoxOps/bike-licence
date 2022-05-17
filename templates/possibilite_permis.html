@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Possibilitées de permis</title>
+</head>
+<body>
+{% for row in reponses_pour_utilisateur %}
+  <p>{{ row.get("name") }}</p>
+  <p>{{ row.get("info") }}</p>
+  <p>{{ row.get("bike_exemple") }}</p>
+  <img src="{{ row.get('bike_pic') }}">
+{% endfor %}
+
+
+
+</body>
+</html>
