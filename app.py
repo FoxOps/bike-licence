@@ -31,3 +31,6 @@ def start():
                         reponses_pour_utilisateur=reponses_pour_utilisateur))
 
     return resp
+
+if __name__ == '__maim__':
+    app.run()
