@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Votre état</title>
+</form>
+
+</head>
+<body>
+    <form action = "http://localhost:5000/start" method = "POST">
+       <p>Date de naissance sous le format dd/mm/yyyy <input type = "text" name = "date_of_birth" /></p>
+        <input type="checkbox" id="permis_b" name="permis_b" value="permis_b">
+        <label for="permis_b"> J'ai le permis B</label><br>
+        <input type="checkbox" id="permis_a1" name="permis_a1" value="permis_a1">
+        <label for="permis_a1"> J'ai le permis A1</label><br>
+        <input type="checkbox" id="permis_a2" name="permis_a2" value="permis_a2">
+        <label for="permis_a2"> J'ai le permis A2</label><br>
+        <p>Si vous avez eu le permis A2, quelle est la date où il vous a été délivré ? Sous le format dd/mm/yyyy <input type = "text" name = "date_permis_a2" /></p>
+
+       <p><input type = "submit" value = "submit" /></p>
+    </form>
+
+</body>
+</html>
