@@ -15,6 +15,7 @@ def bike_licence_info(reponse_formulaire):
             }
 
     if age >= 14 and data.get("permis_b") is False \
+            and data.get("permis_a1") is False \
             and data.get("permis_a2") is False:
         permis_list.append(bl_functions.info_permis_am())
 
