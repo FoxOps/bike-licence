@@ -2,8 +2,11 @@ import bl_functions
 
 
 def bike_licence_info(reponse_formulaire):
+    print('Debug reponse_formulaire', reponse_formulaire)
     data: dict = reponse_formulaire
+    print('Debug data', data)
     age: int = bl_functions.time_passed(data['date_of_birth'])
+    print('Debug age', age)
     error_dict: dict = {}
     permis_list: list = []
     years_permis_a2: int = bl_functions.time_passed(data['date_permis_a2'])

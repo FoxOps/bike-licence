@@ -2,6 +2,7 @@ from datetime import date, datetime
 
 
 def time_passed(input_str: str) -> int:
+    print('Debug func input_str', input_str)
     input_date = datetime.strptime(input_str, '%d/%m/%Y')
     today = date.today()
     year_passed: int = today.year - input_date.year - \
