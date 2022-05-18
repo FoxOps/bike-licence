@@ -1,12 +1,16 @@
 import bl_functions
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 def bike_licence_info(reponse_formulaire):
-    print('Debug reponse_formulaire', reponse_formulaire)
+    logger.debug('Debug reponse_formulaire', reponse_formulaire)
     data: dict = reponse_formulaire
-    print('Debug data', data)
+    logger.debug('Debug data', data)
     age: int = bl_functions.time_passed(data['date_of_birth'])
-    print('Debug age', age)
+    logger.debug('Debug age', age)
     error_dict: dict = {}
     permis_list: list = []
     years_permis_a2: int = bl_functions.time_passed(data['date_permis_a2'])
@@ -20,14 +24,14 @@ def bike_licence_info(reponse_formulaire):
     if age >= 14:
         permis_list.append(bl_functions.info_permis_am())
 
-    if age >= 16 and data["permis_b"] is False:
+    if age >= 16 and data.get("permis_b") is False:
         permis_list.append(bl_functions.info_permis_a1())
-    elif age >= 16 and data["permis_b"] is True:
+    elif age >= 16 and data.get("permis_b") is True:
         permis_list.append(bl_functions.info_permis_a1_7heures())
 
     if age >= 18:
         permis_list.append(bl_functions.info_permis_a2())
-    if age >= 20 and data["permis_a2"] is True:
+    if age >= 20 and data.get("permis_a2") is True:
         permis_list.append(bl_functions.info_permis_a())
 
     return permis_list, error_dict
