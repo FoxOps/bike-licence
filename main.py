@@ -1,16 +1,9 @@
 import bl_functions
-import logging
-
-
-logger = logging.getLogger(__name__)
 
 
 def bike_licence_info(reponse_formulaire):
-    logger.debug('Debug reponse_formulaire', reponse_formulaire)
     data: dict = reponse_formulaire
-    logger.debug('Debug data', data)
     age: int = bl_functions.time_passed(data['date_of_birth'])
-    logger.debug('Debug age', age)
     error_dict: dict = {}
     permis_list: list = []
     years_permis_a2: int = bl_functions.time_passed(data['date_permis_a2'])
@@ -31,7 +24,7 @@ def bike_licence_info(reponse_formulaire):
 
     if age >= 18:
         permis_list.append(bl_functions.info_permis_a2())
-    if age >= 20 and data.get("permis_a2") is True:
+    if age >= 20 and data.get("permis_a2") is True and years_permis_a2 >= 2:
         permis_list.append(bl_functions.info_permis_a())
 
     return permis_list, error_dict
