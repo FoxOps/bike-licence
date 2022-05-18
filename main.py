@@ -13,6 +13,11 @@ def bike_licence_info(reponse_formulaire):
             "title": "Erreur !",
             "text": "Les dates ne peuvent être dans le future."
             }
+    if age < 14:
+        error_dict = {
+            "title": "Erreur !",
+            "text": "Vous n'avez pas l'âge requis."
+            }
 
     if age >= 14 and data.get("permis_b") is False \
             and data.get("permis_a1") is False \
